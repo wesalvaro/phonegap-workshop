@@ -13,9 +13,9 @@
 <script src="js/storage/memory-store.js"></script>
 <script>
 angular.module('emp', ['dialogs']).
-  controller('employees', function(alert) {
+  controller('employees', function(notification) {
       var store = new MemoryStore(function() {
-        alert('Store initialized.', 'Info', 'Cool');
+        notification.alert('Store initialized.', 'Info', 'Cool');
       });
       
       this.name = '';
