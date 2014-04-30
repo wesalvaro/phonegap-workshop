@@ -15,7 +15,7 @@
 angular.module('emp', ['dialogs']).
   controller('employees', function(alert) {
       var store = new MemoryStore(function() {
-        alert('Store initialized.', null, 'Info');
+        alert('Store initialized.', 'Info', 'Cool');
       });
       
       this.name = '';
