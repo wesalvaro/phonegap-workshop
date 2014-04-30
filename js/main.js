@@ -6,9 +6,12 @@ angular.module('emp', ['org.apache.cordova.dialogs', 'org.apache.cordova.geoloca
       
       this.name = '';
       this.employees = [];
-      this.pos = geolocation.getCurrentPosition();
+      
       
       var self = this;
+      geolocation.getCurrentPosition().then(function(pos) {
+        self.pos = pos;
+      });
       this.search = function() {
         store.findByName(this.name, function(employees) {
           self.employees = employees;
