@@ -1,36 +1,17 @@
-var app = {
-
-    findByName: function() {
-        console.log('findByName');
-        this.store.findByName($('.search-key').val(), function(employees) {
-            var l = employees.length;
-            var e;
-            var elist = $('.employee-list').empty();
-            for (var i=0; i<l; i++) {
-                e = employees[i];
-                elist.append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-            }
-        });
-    },
-    showAlert: function (message, title) {
-        if (navigator.notification) {
-            navigator.notification.alert(message, null, title, 'Sweet');
-            console.log('native alert');
-        } else {
-            alert(title ? (title + ": " + message) : message);
-            console.log('web alert');
-        }
-    },
-
-    initialize: function() {
+angular.module('emp', ['dialogs']).
+  controller('employees', function(notification) {
+      var store = new MemoryStore(function() {
+        notification.alert('Store initialized.', 'Info', 'Cool');
+      });
+      
+      this.name = '';
+      this.employees = [];
+      
+      this.search = function() {
         var self = this;
-        this.store = new MemoryStore(function() {
-            self.showAlert('Store initialized.', 'Info');
+        store.findByName(this.name, function(employees) {
+          self.employees = employees;
         });
-        $('.search-key').on('keyup', $.proxy(this.findByName, this));
-    }
-
-};
-
-app.initialize();
-debugger;
+      };
+  });
+angular.bootstrap(angular.element('#app'), ['emp']);
