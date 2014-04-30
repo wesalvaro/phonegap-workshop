@@ -10,7 +10,44 @@
 <script src="phonegap.js"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
 <script src="js/storage/memory-store.js"></script>
-<script src="js/main.js"></script>
+<script>
+var app = {
+
+    findByName: function() {
+        console.log('findByName');
+        this.store.findByName($('.search-key').val(), function(employees) {
+            var l = employees.length;
+            var e;
+            var elist = $('.employee-list').empty();
+            for (var i=0; i<l; i++) {
+                e = employees[i];
+                elist.append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+            }
+        });
+    },
+    showAlert: function (message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'Sweet');
+            console.log('native alert');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+            console.log('web alert');
+        }
+    },
+
+    initialize: function() {
+        var self = this;
+        this.store = new MemoryStore(function() {
+            self.showAlert('Store initialized.', 'Info');
+        });
+        $('.search-key').on('keyup', $.proxy(this.findByName, this));
+    }
+
+};
+
+app.initialize();
+debugger;
+</script>
 
 </body>
 </html>
