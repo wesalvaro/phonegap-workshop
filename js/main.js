@@ -1,4 +1,4 @@
-angular.module('emp', ['dialogs']).
+angular.module('emp', ['org.apache.cordova.dialogs']).
   controller('employees', function(notification) {
       var store = new MemoryStore(function() {
         notification.alert('Store initialized.', 'Info', 'Cool');

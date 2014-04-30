@@ -18,7 +18,8 @@
     <gap:platform name="android" />
     
     <gap:plugin name="org.apache.cordova.dialogs" />
- 
+    <gap:plugin name="org.apache.cordova.geolocation" />
+    
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/file"/>
