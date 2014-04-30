@@ -31,3 +31,4 @@ var app = {
 };
 
 app.initialize();
+debugger;
