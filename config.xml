@@ -16,6 +16,8 @@
     </author>
     
     <gap:platform name="android" />
+    
+    <gap:plugin name="org.apache.cordova.dialogs" />
  
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
